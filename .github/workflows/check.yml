@@ -181,7 +181,10 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Install Node Packages.
-        run: cd tests && dvc pull && yarn
+        run: |
+          cd tests
+          dvc pull -v
+          yarn
 
       - name: Build relayer
         run: cargo build --features integration-tests,cli,native-tls/vendored
